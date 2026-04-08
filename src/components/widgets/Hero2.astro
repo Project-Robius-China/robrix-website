@@ -1,5 +1,4 @@
 ---
-import Image from '~/components/common/Image.astro';
 import Button from '~/components/ui/Button.astro';
 import Particles from '~/components/dockit/ParticlesClean.astro';
 
@@ -12,8 +11,6 @@ const {
 
   content = await Astro.slots.render('content'),
   actions = await Astro.slots.render('actions'),
-  image = await Astro.slots.render('image'),
-
   id,
   bg = await Astro.slots.render('bg'),
 } = Astro.props;

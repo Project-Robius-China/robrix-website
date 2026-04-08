@@ -283,3 +283,5 @@ if (document.readyState === 'loading') {
 } else {
   initializeParticles();
 }
+
+export {};

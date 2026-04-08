@@ -191,19 +191,19 @@
 			// Skip if already initialized
 			if (tabsNavContainer.children.length > 0) return;
 
-			const tabItems = tabsItemsContainer.querySelectorAll('.dockit-tab-item');
+			const tabItems = tabsItemsContainer.querySelectorAll<HTMLElement>('.dockit-tab-item');
 			if (tabItems.length === 0) return;
 
 			let activeTabNumber = 1;
 
 			// Setup tabs
 			tabItems.forEach((item, index) => {
-				const navElement = item.querySelector('.dockit-tab-nav');
-				const contentElement = item.querySelector('.dockit-tab-content');
+				const navElement = item.querySelector<HTMLElement>('.dockit-tab-nav');
+				const contentElement = item.querySelector<HTMLElement>('.dockit-tab-content');
 
 				if (navElement && contentElement) {
-					const navClone = navElement.cloneNode(true);
-					const contentClone = contentElement.cloneNode(true);
+					const navClone = navElement.cloneNode(true) as HTMLElement;
+					const contentClone = contentElement.cloneNode(true) as HTMLElement;
 
 					const isActive = index === 0;
 					navClone.setAttribute('data-active', isActive.toString());
@@ -215,7 +215,7 @@
 			});
 
 			// Bind events
-			const tabButtons = tabsNavContainer.querySelectorAll('.tab-button');
+			const tabButtons = tabsNavContainer.querySelectorAll<HTMLElement>('.tab-button');
 			tabButtons.forEach((button) => {
 				button.addEventListener('click', (e) => {
 					e.preventDefault();
@@ -228,7 +228,7 @@
 						nav.setAttribute('data-active', 'false');
 					});
 
-					tabsContentContainer.querySelectorAll('.dockit-tab-content').forEach((content) => {
+					tabsContentContainer.querySelectorAll<HTMLElement>('.dockit-tab-content').forEach((content) => {
 						content.setAttribute('data-active', 'false');
 						content.style.display = 'none';
 					});
@@ -241,7 +241,7 @@
 						targetNav.setAttribute('data-active', 'true');
 					}
 
-					const targetContent = tabsContentContainer.querySelector(
+					const targetContent = tabsContentContainer.querySelector<HTMLElement>(
 						`[data-panel="${tabNumber}"]`
 					);
 					if (targetContent) {
