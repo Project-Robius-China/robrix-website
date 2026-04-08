@@ -19,11 +19,15 @@ export const headerData = {
       href: getPermalink('/#faq'),
     },
     {
+      text: 'Download',
+      href: getPermalink('/download'),
+    },
+    {
       text: 'Presentations',
       href: getPermalink('/presentations'),
     },
   ],
-  actions: [{ variant: 'primary', text: 'GitHub', href: 'https://github.com/project-robius/robrix', icon: 'tabler:brand-github', target: '_blank' }],
+  actions: [{ variant: 'primary', text: 'Download', href: getPermalink('/download'), icon: 'tabler:download' }],
 };
 
 export const footerData = {
@@ -32,6 +36,7 @@ export const footerData = {
       title: 'Project',
       links: [
         { text: 'Features', href: getPermalink('/#features') },
+        { text: 'Download', href: getPermalink('/download') },
         { text: 'GitHub', href: 'https://github.com/project-robius/robrix' },
         { text: 'Releases', href: 'https://github.com/project-robius/robrix/releases' },
       ],

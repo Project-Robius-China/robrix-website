@@ -19,6 +19,7 @@ import Accordion from '~/components/dockit/Accordion.astro';
 import Button from '~/components/dockit/Button.astro';
 import Tabs from '~/components/dockit/Tabs.astro';
 import TabItem from '~/components/dockit/TabItem.astro';
+import { getPermalink } from '~/utils/permalinks';
 
 const metadata = {
   title: 'Robrix — Multi-platform Matrix Chat Client Built with Rust',
@@ -34,8 +35,8 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'Download on GitHub',
-        href: 'https://github.com/project-robius/robrix/releases',
+        text: 'Download',
+        href: getPermalink('/download'),
         icon: 'tabler:download',
       },
       { text: 'View Documentation', href: 'https://github.com/project-robius/robrix#readme' },
@@ -182,7 +183,7 @@ const metadata = {
     items={[
       {
         title: '7+ Platforms',
-        description: 'macOS, Linux, Windows, Android, iOS, iPadOS, and OpenHarmony — all from a single Rust codebase.',
+        description: 'macOS, Linux, Windows, Android, iOS, and iPadOS — all from a single Rust codebase.',
         icon: 'tabler:devices',
       },
       {

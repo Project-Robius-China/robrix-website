@@ -1,0 +1,252 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Button from '~/components/ui/Button.astro';
+
+const metadata = {
+  title: 'Download Robrix — Multi-platform Matrix Client',
+};
+
+interface GithubReleaseAsset {
+  name: string;
+  browser_download_url: string;
+  size?: number;
+}
+
+interface DownloadAsset {
+  name: string;
+  url: string;
+  sizeLabel: string;
+}
+
+const githubReleaseApi = 'https://api.github.com/repos/project-robius/robrix/releases/latest';
+const sourceCodeUrl = 'https://github.com/project-robius/robrix';
+const sourceZipDefaultUrl = 'https://github.com/project-robius/robrix/archive/refs/heads/main.zip';
+const sourceTarDefaultUrl = 'https://github.com/project-robius/robrix/archive/refs/heads/main.tar.gz';
+
+const formatBytes = (size = 0) => {
+  if (!size) return '';
+  const units = ['B', 'KB', 'MB', 'GB'];
+  let value = size;
+  let unitIndex = 0;
+  while (value >= 1024 && unitIndex < units.length - 1) {
+    value /= 1024;
+    unitIndex += 1;
+  }
+  const digits = value >= 100 ? 0 : value >= 10 ? 1 : 2;
+  return `${value.toFixed(digits)} ${units[unitIndex]}`;
+};
+
+const mapAsset = (asset: GithubReleaseAsset): DownloadAsset => ({
+  name: asset.name,
+  url: asset.browser_download_url,
+  sizeLabel: formatBytes(asset.size || 0),
+});
+
+const isDesktopAsset = (name: string) => /(windows|win|mac|darwin|linux|appimage|dmg|msi|exe|deb|rpm|pkg)/i.test(name);
+const isMobileAsset = (name: string) => /(android|ios|ipad|mobile|apk|ipa)/i.test(name);
+const isOtherAsset = (name: string) => /(source|src|nightly)/i.test(name);
+
+let releaseTag = '';
+let releaseName = '';
+let releasePublishedAt = '';
+let desktopAssets: DownloadAsset[] = [];
+let mobileAssets: DownloadAsset[] = [];
+let otherAssets: DownloadAsset[] = [];
+let sourceZipUrl = sourceZipDefaultUrl;
+let sourceTarUrl = sourceTarDefaultUrl;
+
+try {
+  const response = await fetch(githubReleaseApi, {
+    headers: {
+      Accept: 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+    },
+  });
+
+  if (response.ok) {
+    const release = await response.json();
+    const assets: GithubReleaseAsset[] = Array.isArray(release.assets) ? release.assets : [];
+
+    releaseTag = release.tag_name || '';
+    releaseName = release.name || '';
+    releasePublishedAt = release.published_at || '';
+    sourceZipUrl = release.zipball_url || sourceZipDefaultUrl;
+    sourceTarUrl = release.tarball_url || sourceTarDefaultUrl;
+
+    desktopAssets = assets.filter((asset) => isDesktopAsset(asset.name) && !isMobileAsset(asset.name)).map(mapAsset);
+    mobileAssets = assets.filter((asset) => isMobileAsset(asset.name)).map(mapAsset);
+    otherAssets = assets
+      .filter((asset) => isOtherAsset(asset.name) || (!isDesktopAsset(asset.name) && !isMobileAsset(asset.name)))
+      .map(mapAsset);
+  }
+} catch (error) {
+  console.error('Failed to fetch latest release assets from GitHub API', error);
+}
+
+const latestDesktopAsset = desktopAssets[0];
+const latestMobileAsset = mobileAssets[0];
+const latestOtherAsset = otherAssets[0];
+const releaseDisplayName = releaseName || releaseTag || 'latest release';
+const releaseDateLabel = releasePublishedAt
+  ? new Date(releasePublishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
+  : '';
+---
+
+<Layout metadata={metadata}>
+  <Hero tagline="Downloads">
+    <Fragment slot="title">
+      Download Robrix
+    </Fragment>
+    <Fragment slot="subtitle">
+      Latest artifacts are pulled from GitHub Releases API and linked as direct downloads. {releaseDisplayName}{releaseDateLabel ? ` • Published ${releaseDateLabel}` : ''}
+    </Fragment>
+    <Fragment slot="actions">
+      {
+        latestDesktopAsset ? (
+          <Button variant="primary" text="Download Desktop" href={latestDesktopAsset.url} target="_blank" icon="tabler:download" />
+        ) : (
+          <Button variant="primary" text="Download Source ZIP" href={sourceZipUrl} target="_blank" icon="tabler:download" />
+        )
+      }
+      {
+        latestMobileAsset ? (
+          <Button text="Download Mobile" href={latestMobileAsset.url} target="_blank" />
+        ) : (
+          <Button text="Source Tarball" href={sourceTarUrl} target="_blank" />
+        )
+      }
+    </Fragment>
+  </Hero>
+
+  <section class="dockit-section relative">
+    <div class="absolute inset-0 bg-gray-200/50 dark:bg-slate-800/50 backdrop-blur-sm -z-10"></div>
+    <div class="dockit-container">
+      <div class="mb-10 md:mx-auto text-center md:mb-12 max-w-3xl">
+        <p class="text-base font-semibold tracking-wide uppercase" style="color: var(--dockit-primary);">
+          Choose Your Platform
+        </p>
+        <h2 class="section-title mb-4">Direct downloads by platform</h2>
+        <p class="section-description max-w-3xl mx-auto">
+          Every download below points directly to a release artifact.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+          <h3 class="text-xl font-bold mb-2">Desktop</h3>
+          <p class="text-muted mb-4">Artifacts for macOS, Windows, and Linux.</p>
+          {
+            desktopAssets.length ? (
+              <div class="space-y-2 mb-6">
+                {desktopAssets.map((asset) => (
+                  <a
+                    href={asset.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex items-center justify-between rounded-lg border border-gray-200 dark:border-gray-700 px-3 py-2 text-sm hover:border-primary transition-colors"
+                  >
+                    <span class="truncate pr-3">{asset.name}</span>
+                    <span class="text-xs text-muted whitespace-nowrap">{asset.sizeLabel || 'file'}</span>
+                  </a>
+                ))}
+              </div>
+            ) : (
+              <p class="text-sm text-muted mb-6">No desktop artifact found in latest release yet.</p>
+            )
+          }
+          {
+            latestDesktopAsset && (
+              <Button variant="primary" text="Download Desktop" href={latestDesktopAsset.url} target="_blank" icon="tabler:download" />
+            )
+          }
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+          <h3 class="text-xl font-bold mb-2">Mobile</h3>
+          <p class="text-muted mb-4">Artifacts for Android and iOS channels.</p>
+          {
+            mobileAssets.length ? (
+              <div class="space-y-2 mb-6">
+                {mobileAssets.map((asset) => (
+                  <a
+                    href={asset.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex items-center justify-between rounded-lg border border-gray-200 dark:border-gray-700 px-3 py-2 text-sm hover:border-primary transition-colors"
+                  >
+                    <span class="truncate pr-3">{asset.name}</span>
+                    <span class="text-xs text-muted whitespace-nowrap">{asset.sizeLabel || 'file'}</span>
+                  </a>
+                ))}
+              </div>
+            ) : (
+              <p class="text-sm text-muted mb-6">No mobile artifact found in latest release yet.</p>
+            )
+          }
+          {
+            latestMobileAsset && (
+              <Button variant="primary" text="Download Mobile" href={latestMobileAsset.url} target="_blank" icon="tabler:download" />
+            )
+          }
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+          <h3 class="text-xl font-bold mb-2">Other & Source</h3>
+          <p class="text-muted mb-4">Nightly and special builds.</p>
+          {
+            otherAssets.length ? (
+              <div class="space-y-2 mb-6">
+                {otherAssets.map((asset) => (
+                  <a
+                    href={asset.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex items-center justify-between rounded-lg border border-gray-200 dark:border-gray-700 px-3 py-2 text-sm hover:border-primary transition-colors"
+                  >
+                    <span class="truncate pr-3">{asset.name}</span>
+                    <span class="text-xs text-muted whitespace-nowrap">{asset.sizeLabel || 'file'}</span>
+                  </a>
+                ))}
+              </div>
+            ) : (
+              <p class="text-sm text-muted mb-6">No additional artifact found in latest release yet.</p>
+            )
+          }
+          {
+            latestOtherAsset ? (
+              <Button text="Download Other" href={latestOtherAsset.url} target="_blank" icon="tabler:download" />
+            ) : (
+              <Button text="Get Source Code" href={sourceCodeUrl} target="_blank" icon="tabler:brand-github" />
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dockit-section">
+    <div class="dockit-container max-w-5xl">
+      <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 md:p-10">
+        <h2 class="section-title mb-3">Build from source</h2>
+        <p class="section-description mb-6">
+          Prefer building Robrix locally? Clone the repository and follow the setup instructions.
+        </p>
+        <div class="not-prose bg-gray-900 dark:bg-gray-950 p-4 rounded-lg border border-gray-800 mb-6">
+          <code class="text-sm text-gray-300 block">
+            git clone https://github.com/project-robius/robrix.git
+            <br />
+            cd robrix
+            <br />
+            cargo run
+          </code>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <Button variant="primary" text="View Source" href={sourceCodeUrl} target="_blank" />
+          <Button text="Source ZIP" href={sourceZipUrl} target="_blank" />
+          <Button text="Source Tarball" href={sourceTarUrl} target="_blank" />
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
