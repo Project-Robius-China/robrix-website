@@ -1,18 +1,19 @@
 ---
 // Hero Background component with dynamic height calculation
+import { getAsset } from '~/utils/permalinks';
 ---
 
 <div class="hero-bg-wrapper">
   <div class="hero-bg">
     <img
-      src="/images/hero-bg-light.png"
+      src={getAsset('/images/hero-bg-light.png')}
       alt="Hero Background"
       class="dark:hidden"
       loading="eager"
       fetchpriority="high"
     />
     <img
-      src="/images/hero-bg-dark.png"
+      src={getAsset('/images/hero-bg-dark.png')}
       alt="Hero Background"
       class="hidden dark:block"
       loading="eager"
