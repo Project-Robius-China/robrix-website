@@ -5,6 +5,9 @@ import type { AstroConfig, AstroIntegration } from 'astro';
 import configBuilder, { type Config } from './utils/configBuilder';
 import loadConfig from './utils/loadConfig';
 
+const hasCliFlag = (flag: string) =>
+  process.argv.some((arg, index) => arg === flag || (arg.startsWith(`${flag}=`) && index >= 0));
+
 export default ({ config: _themeConfig = 'src/config.yaml' } = {}): AstroIntegration => {
   let cfg: AstroConfig;
   return {
@@ -27,12 +30,19 @@ export default ({ config: _themeConfig = 'src/config.yaml' } = {}): AstroIntegra
 
         const rawJsonConfig = (await loadConfig(_themeConfig)) as Config;
         const { SITE, I18N, METADATA, APP_BLOG, UI, ANALYTICS } = configBuilder(rawJsonConfig);
+        const resolvedSite = hasCliFlag('--site') ? (config.site ? String(config.site) : SITE.site) : SITE.site;
+        const resolvedBase = hasCliFlag('--base') ? config.base : SITE.base;
+        const resolvedSITE = {
+          ...SITE,
+          site: resolvedSite,
+          base: resolvedBase,
+        };
 
         updateConfig({
-          site: SITE.site,
-          base: SITE.base,
+          site: resolvedSITE.site,
+          base: resolvedSITE.base,
 
-          trailingSlash: SITE.trailingSlash ? 'always' : 'never',
+          trailingSlash: resolvedSITE.trailingSlash ? 'always' : 'never',
 
           vite: {
             plugins: [
@@ -46,7 +56,7 @@ export default ({ config: _themeConfig = 'src/config.yaml' } = {}): AstroIntegra
                 load(id) {
                   if (id === resolvedVirtualModuleId) {
                     return `
-                    export const SITE = ${JSON.stringify(SITE)};
+                    export const SITE = ${JSON.stringify(resolvedSITE)};
                     export const I18N = ${JSON.stringify(I18N)};
                     export const METADATA = ${JSON.stringify(METADATA)};
                     export const APP_BLOG = ${JSON.stringify(APP_BLOG)};
