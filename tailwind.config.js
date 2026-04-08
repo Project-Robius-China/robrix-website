@@ -27,8 +27,8 @@ export default {
 
       animation: {
         fade: 'fadeInUp 1s both',
-        'gradient': 'gradient 8s linear infinite',
-        'float': 'float 6s ease-in-out infinite',
+        gradient: 'gradient 8s linear infinite',
+        float: 'float 6s ease-in-out infinite',
       },
 
       keyframes: {

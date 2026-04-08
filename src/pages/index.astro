@@ -43,8 +43,8 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="subtitle">
-      Connect to the Matrix network from any device with a single, native codebase built in Rust.
-      Access your Matrix account with true cross-platform performance.
+      Connect to the Matrix network from any device with a single, native codebase built in Rust. Access your Matrix
+      account with true cross-platform performance.
     </Fragment>
   </Hero2>
 
@@ -58,77 +58,82 @@ const metadata = {
       { title: 'Native Performance', amount: 'Always' },
       { title: 'License', amount: 'MIT' },
     ]}
-    >
+  >
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-gray-200/50 dark:bg-slate-800/50 backdrop-blur-sm"></div>
     </Fragment>
   </Stats>
 
-<!-- Technology Section ************ -->
+  <!-- Technology Section ************ -->
 
-<section id="technology" class="dockit-section">
-  <div class="dockit-container">
-    <div class="mb-10 md:mx-auto text-center md:mb-12 max-w-3xl">
-      <p class="text-base font-semibold tracking-wide uppercase" style="color: var(--dockit-primary);">
-        Technology Stack
-      </p>
-      <h2 class="section-title mb-4">Powered by cutting-edge tools</h2>
-      <p class="section-description max-w-3xl mx-auto">
-        Robrix leverages the best open-source technologies for maximum performance and security
-      </p>
+  <section id="technology" class="dockit-section">
+    <div class="dockit-container">
+      <div class="mb-10 md:mx-auto text-center md:mb-12 max-w-3xl">
+        <p class="text-base font-semibold tracking-wide uppercase" style="color: var(--dockit-primary);">
+          Technology Stack
+        </p>
+        <h2 class="section-title mb-4">Powered by cutting-edge tools</h2>
+        <p class="section-description max-w-3xl mx-auto">
+          Robrix leverages the best open-source technologies for maximum performance and security
+        </p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <div
+          class="flex flex-col items-center text-center p-6 bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+        >
+          <div class="w-16 h-16 rounded-full bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center mb-4">
+            <svg class="w-10 h-10 text-orange-600 dark:text-orange-400" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M23.834 8.101a13.912 13.912 0 0 1-13.643 11.72a10.105 10.105 0 0 1-1.994-.12a6.111 6.111 0 0 1-5.082-5.761a5.934 5.934 0 0 1 11.867-.084c.025.983-.401 1.846-1.277 1.871c-.936 0-1.374-.668-1.374-1.567v-2.5a1.531 1.531 0 0 0-1.52-1.533H8.715a3.648 3.648 0 1 0 2.695 6.08l.073-.11l.074.121a2.58 2.58 0 0 0 2.2 1.048a2.909 2.909 0 0 0 2.695-3.04a7.912 7.912 0 0 0-.217-1.933a7.404 7.404 0 0 0-14.64 1.603a7.497 7.497 0 0 0 7.308 7.405s.549.05 1.167.035a15.803 15.803 0 0 0 8.475-2.528c.036-.025.072.025.048.061a12.44 12.44 0 0 1-9.69 3.963a8.744 8.744 0 0 1-8.9-8.972a9.049 9.049 0 0 1 3.635-7.247a8.863 8.863 0 0 1 5.229-1.726h2.813a7.915 7.915 0 0 0 5.839-2.578a.11.11 0 0 1 .059-.034a.112.112 0 0 1 .12.053a.113.113 0 0 1 .015.067a7.934 7.934 0 0 1-1.227 3.549a.107.107 0 0 0-.014.06a.11.11 0 0 0 .073.095a.109.109 0 0 0 .062.004a8.505 8.505 0 0 0 5.913-4.876a.155.155 0 0 1 .055-.053a.15.15 0 0 1 .147 0a.153.153 0 0 1 .054.053A10.779 10.779 0 0 1 23.834 8.1zM8.895 11.628a2.188 2.188 0 1 0 2.188 2.188v-2.042a.158.158 0 0 0-.15-.15Z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Rust Language</h3>
+          <p class="text-muted">Memory-safe, blazingly fast systems programming</p>
+        </div>
+
+        <div
+          class="flex flex-col items-center text-center p-6 bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+        >
+          <div class="w-16 h-16 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mb-4">
+            <svg class="w-10 h-10 text-purple-600 dark:text-purple-400" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M.632.55v22.9H2.28V24H0V0h2.28v.55zm7.043 7.26v1.157h.033c.309-.443.683-.784 1.117-1.024.433-.245.936-.365 1.5-.365.54 0 1.033.107 1.481.314.448.208.785.582 1.02 1.108.254-.374.6-.706 1.034-.992.434-.287.95-.43 1.546-.43.453 0 .872.056 1.26.167.388.11.716.286.993.53.276.245.489.559.646.951.152.392.23.863.23 1.417v5.728h-2.349V11.52c0-.286-.01-.559-.032-.812a1.755 1.755 0 0 0-.18-.66 1.106 1.106 0 0 0-.438-.448c-.194-.11-.457-.166-.785-.166-.332 0-.6.064-.803.189a1.38 1.38 0 0 0-.48.499 1.946 1.946 0 0 0-.231.696 5.56 5.56 0 0 0-.06.785v4.768h-2.35v-4.8c0-.254-.004-.503-.018-.752a2.074 2.074 0 0 0-.143-.688 1.052 1.052 0 0 0-.415-.503c-.194-.125-.476-.19-.854-.19-.111 0-.259.024-.439.074-.18.051-.36.143-.53.282-.171.138-.319.337-.439.595-.12.259-.18.6-.18 1.02v4.966H5.46V7.81zm15.693 15.64V.55H21.72V0H24v24h-2.28v-.55z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Matrix Protocol</h3>
+          <p class="text-muted">Decentralized, secure real-time communication</p>
+        </div>
+
+        <div
+          class="flex flex-col items-center text-center p-6 bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+        >
+          <div class="w-16 h-16 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-4">
+            <svg
+              class="w-10 h-10 text-blue-600 dark:text-blue-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Makepad UI</h3>
+          <p class="text-muted">Native cross-platform UI framework</p>
+        </div>
+      </div>
     </div>
-    <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-      <div
-        class="flex flex-col items-center text-center p-6 bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
-      >
-        <div class="w-16 h-16 rounded-full bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center mb-4">
-          <svg class="w-10 h-10 text-orange-600 dark:text-orange-400" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M23.834 8.101a13.912 13.912 0 0 1-13.643 11.72a10.105 10.105 0 0 1-1.994-.12a6.111 6.111 0 0 1-5.082-5.761a5.934 5.934 0 0 1 11.867-.084c.025.983-.401 1.846-1.277 1.871c-.936 0-1.374-.668-1.374-1.567v-2.5a1.531 1.531 0 0 0-1.52-1.533H8.715a3.648 3.648 0 1 0 2.695 6.08l.073-.11l.074.121a2.58 2.58 0 0 0 2.2 1.048a2.909 2.909 0 0 0 2.695-3.04a7.912 7.912 0 0 0-.217-1.933a7.404 7.404 0 0 0-14.64 1.603a7.497 7.497 0 0 0 7.308 7.405s.549.05 1.167.035a15.803 15.803 0 0 0 8.475-2.528c.036-.025.072.025.048.061a12.44 12.44 0 0 1-9.69 3.963a8.744 8.744 0 0 1-8.9-8.972a9.049 9.049 0 0 1 3.635-7.247a8.863 8.863 0 0 1 5.229-1.726h2.813a7.915 7.915 0 0 0 5.839-2.578a.11.11 0 0 1 .059-.034a.112.112 0 0 1 .12.053a.113.113 0 0 1 .015.067a7.934 7.934 0 0 1-1.227 3.549a.107.107 0 0 0-.014.06a.11.11 0 0 0 .073.095a.109.109 0 0 0 .062.004a8.505 8.505 0 0 0 5.913-4.876a.155.155 0 0 1 .055-.053a.15.15 0 0 1 .147 0a.153.153 0 0 1 .054.053A10.779 10.779 0 0 1 23.834 8.1zM8.895 11.628a2.188 2.188 0 1 0 2.188 2.188v-2.042a.158.158 0 0 0-.15-.15Z"
-            ></path>
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold mb-2">Rust Language</h3>
-        <p class="text-muted">Memory-safe, blazingly fast systems programming</p>
-      </div>
+  </section>
 
-      <div
-        class="flex flex-col items-center text-center p-6 bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
-      >
-        <div class="w-16 h-16 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mb-4">
-          <svg class="w-10 h-10 text-purple-600 dark:text-purple-400" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M.632.55v22.9H2.28V24H0V0h2.28v.55zm7.043 7.26v1.157h.033c.309-.443.683-.784 1.117-1.024.433-.245.936-.365 1.5-.365.54 0 1.033.107 1.481.314.448.208.785.582 1.02 1.108.254-.374.6-.706 1.034-.992.434-.287.95-.43 1.546-.43.453 0 .872.056 1.26.167.388.11.716.286.993.53.276.245.489.559.646.951.152.392.23.863.23 1.417v5.728h-2.349V11.52c0-.286-.01-.559-.032-.812a1.755 1.755 0 0 0-.18-.66 1.106 1.106 0 0 0-.438-.448c-.194-.11-.457-.166-.785-.166-.332 0-.6.064-.803.189a1.38 1.38 0 0 0-.48.499 1.946 1.946 0 0 0-.231.696 5.56 5.56 0 0 0-.06.785v4.768h-2.35v-4.8c0-.254-.004-.503-.018-.752a2.074 2.074 0 0 0-.143-.688 1.052 1.052 0 0 0-.415-.503c-.194-.125-.476-.19-.854-.19-.111 0-.259.024-.439.074-.18.051-.36.143-.53.282-.171.138-.319.337-.439.595-.12.259-.18.6-.18 1.02v4.966H5.46V7.81zm15.693 15.64V.55H21.72V0H24v24h-2.28v-.55z"
-            ></path>
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold mb-2">Matrix Protocol</h3>
-        <p class="text-muted">Decentralized, secure real-time communication</p>
-      </div>
+  <!-- Features Section with Dockit Cards ************** -->
 
-      <div
-        class="flex flex-col items-center text-center p-6 bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
-      >
-        <div class="w-16 h-16 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-4">
-          <svg class="w-10 h-10 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-            ></path>
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold mb-2">Makepad UI</h3>
-        <p class="text-muted">Native cross-platform UI framework</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Features Section with Dockit Cards ************** -->
-
-<section id="features" class="dockit-section relative">
+  <section id="features" class="dockit-section relative">
     <div class="absolute inset-0 bg-gray-200/50 dark:bg-slate-800/50 backdrop-blur-sm -z-10"></div>
     <div class="dockit-container">
       <div class="mb-10 md:mx-auto text-center md:mb-12 max-w-3xl">

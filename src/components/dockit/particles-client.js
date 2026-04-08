@@ -38,10 +38,10 @@ class MatrixParticles {
 
     // Check for dark mode
     this.updateTheme();
-    new MutationObserver(() => this.updateTheme()).observe(
-      document.documentElement,
-      { attributes: true, attributeFilter: ['class'] }
-    );
+    new MutationObserver(() => this.updateTheme()).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
   }
 
   updateTheme() {
@@ -73,7 +73,7 @@ class MatrixParticles {
       radius: Math.random() * 2 + 1,
       connections: [],
       opacity: Math.random() * 0.5 + 0.5,
-      hue: Math.random() * 60 + 340 // Orange to purple range
+      hue: Math.random() * 60 + 340, // Orange to purple range
     };
   }
 
@@ -167,7 +167,8 @@ class MatrixParticles {
       const particle = this.particles[i];
 
       for (const connectionId of particle.connections) {
-        if (connectionId > i) { // Draw each connection only once
+        if (connectionId > i) {
+          // Draw each connection only once
           const connected = this.particles[connectionId];
           const dx = particle.x - connected.x;
           const dy = particle.y - connected.y;
@@ -175,9 +176,7 @@ class MatrixParticles {
           const opacity = (1 - distance / this.connectionDistance) * 0.15;
 
           // Create gradient for connection
-          const gradient = this.ctx.createLinearGradient(
-            particle.x, particle.y, connected.x, connected.y
-          );
+          const gradient = this.ctx.createLinearGradient(particle.x, particle.y, connected.x, connected.y);
 
           if (this.isDarkMode) {
             gradient.addColorStop(0, `hsla(${particle.hue}, 70%, 50%, ${opacity})`);
@@ -216,8 +215,12 @@ class MatrixParticles {
 
       // Create radial gradient for particle
       const gradient = this.ctx.createRadialGradient(
-        particle.x, particle.y, 0,
-        particle.x, particle.y, particleRadius * 3
+        particle.x,
+        particle.y,
+        0,
+        particle.x,
+        particle.y,
+        particleRadius * 3
       );
 
       if (this.isDarkMode) {

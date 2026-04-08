@@ -95,18 +95,30 @@ const releaseDateLabel = releasePublishedAt
 
 <Layout metadata={metadata}>
   <Hero tagline="Downloads">
-    <Fragment slot="title">
-      Download Robrix
-    </Fragment>
+    <Fragment slot="title"> Download Robrix </Fragment>
     <Fragment slot="subtitle">
-      Latest artifacts are pulled from GitHub Releases API and linked as direct downloads. {releaseDisplayName}{releaseDateLabel ? ` • Published ${releaseDateLabel}` : ''}
+      Latest artifacts are pulled from GitHub Releases API and linked as direct downloads. {releaseDisplayName}{
+        releaseDateLabel ? ` • Published ${releaseDateLabel}` : ''
+      }
     </Fragment>
     <Fragment slot="actions">
       {
         latestDesktopAsset ? (
-          <Button variant="primary" text="Download Desktop" href={latestDesktopAsset.url} target="_blank" icon="tabler:download" />
+          <Button
+            variant="primary"
+            text="Download Desktop"
+            href={latestDesktopAsset.url}
+            target="_blank"
+            icon="tabler:download"
+          />
         ) : (
-          <Button variant="primary" text="Download Source ZIP" href={sourceZipUrl} target="_blank" icon="tabler:download" />
+          <Button
+            variant="primary"
+            text="Download Source ZIP"
+            href={sourceZipUrl}
+            target="_blank"
+            icon="tabler:download"
+          />
         )
       }
       {
@@ -127,9 +139,7 @@ const releaseDateLabel = releasePublishedAt
           Choose Your Platform
         </p>
         <h2 class="section-title mb-4">Direct downloads by platform</h2>
-        <p class="section-description max-w-3xl mx-auto">
-          Every download below points directly to a release artifact.
-        </p>
+        <p class="section-description max-w-3xl mx-auto">Every download below points directly to a release artifact.</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -157,7 +167,13 @@ const releaseDateLabel = releasePublishedAt
           }
           {
             latestDesktopAsset && (
-              <Button variant="primary" text="Download Desktop" href={latestDesktopAsset.url} target="_blank" icon="tabler:download" />
+              <Button
+                variant="primary"
+                text="Download Desktop"
+                href={latestDesktopAsset.url}
+                target="_blank"
+                icon="tabler:download"
+              />
             )
           }
         </div>
@@ -186,7 +202,13 @@ const releaseDateLabel = releasePublishedAt
           }
           {
             latestMobileAsset && (
-              <Button variant="primary" text="Download Mobile" href={latestMobileAsset.url} target="_blank" icon="tabler:download" />
+              <Button
+                variant="primary"
+                text="Download Mobile"
+                href={latestMobileAsset.url}
+                target="_blank"
+                icon="tabler:download"
+              />
             )
           }
         </div>

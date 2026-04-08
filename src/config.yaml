@@ -11,7 +11,7 @@ metadata:
   title:
     default: Robrix
     template: '%s — Robrix'
-  description: "A multi-platform Matrix chat client built with Rust and Makepad. Experience seamless messaging across macOS, Linux, Windows, Android, iOS, and more."
+  description: 'A multi-platform Matrix chat client built with Rust and Makepad. Experience seamless messaging across macOS, Linux, Windows, Android, iOS, and more.'
   robots:
     index: true
     follow: true

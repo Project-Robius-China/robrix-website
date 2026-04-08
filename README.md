@@ -7,11 +7,13 @@ Official website for [Robrix](https://github.com/project-robius/robrix), a multi
 This website showcases Robrix, highlighting its features, supported platforms, technology stack, and providing resources including conference presentations and videos about the project.
 
 **Tech Stack:**
+
 - [Astro 5.0](https://astro.build/) - Static site generator
 - [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS
 - TypeScript
 
 **Key Features:**
+
 - Responsive design with dark/light mode
 - SEO optimized with Open Graph tags
 - Embedded conference videos

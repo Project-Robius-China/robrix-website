@@ -27,7 +27,9 @@ export const headerData = {
       href: getPermalink('/presentations'),
     },
   ],
-  actions: [{ variant: 'primary' as const, text: 'Download', href: getPermalink('/download'), icon: 'tabler:download' }],
+  actions: [
+    { variant: 'primary' as const, text: 'Download', href: getPermalink('/download'), icon: 'tabler:download' },
+  ],
 };
 
 export const footerData = {
